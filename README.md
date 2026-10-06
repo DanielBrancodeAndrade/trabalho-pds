@@ -8,8 +8,6 @@ Projeto web para apresentação da disciplina **Projeto de Desenvolvimento de So
 - Banco: MySQL
 - Comunicação: API REST + JSON
 
-React foi escolhido no lugar de Angular porque, para esta entrega, a equipe precisa de duas telas e CRUDs funcionando rapidamente; Angular adicionaria uma estrutura e conceitos que não são necessários para demonstrar os requisitos.
-
 ## Requisitos implementados
 ### Aluno
 - Cadastrar
@@ -66,5 +64,3 @@ Backend: http://localhost:3001
 9. Pesquisar por tipo/status.
 10. Editar e desativar o plano.
 
-## Observação sobre a especificação
-O documento usa `Tipo` nos requisitos funcionais do Plano, enquanto o diagrama de classes apresenta o atributo como `nome`. Nesta implementação, foi adotado `tipo`, por ser o campo explicitamente solicitado nos RF005–RF008.
