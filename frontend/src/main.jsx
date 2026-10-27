@@ -426,6 +426,24 @@ function AlunoForm({
         true
       )}
 
+      {form.id_aluno && (
+  <label>
+    Status
+    <select
+      value={form.status || 'ATIVO'}
+      onChange={(e) =>
+        setForm({
+          ...form,
+          status: e.target.value
+        })
+      }
+    >
+      <option value="ATIVO">Ativo</option>
+      <option value="INATIVO">Inativo</option>
+    </select>
+  </label>
+)}
+
       <div className="form-actions full">
         <button
           type="button"
