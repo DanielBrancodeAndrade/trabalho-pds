@@ -152,6 +152,7 @@ function Modal({ title, onClose, children }) {
 function Alunos() {
   const [items, setItems] = useState([]);
   const [q, setQ] = useState('');
+  const [status, setStatus] = useState('');
   const [modal, setModal] = useState(null);
   const [form, setForm] = useState(initialAluno);
   const [msg, setMsg] = useState('');
@@ -235,7 +236,9 @@ function Alunos() {
       notify(e.message, true);
     }
   };
-
+  const alunosFiltrados = items.filter(
+  (a) => !status || a.status === status
+);
   return (
     <section>
       <div className="page-title">
@@ -253,22 +256,30 @@ function Alunos() {
       </div>
 
       <div className="toolbar">
-        <div className="search">
-          <Search size={18} />
+  <div className="search">
+    <Search size={18} />
 
-          <input
-            placeholder="Pesquisar por nome ou CPF"
-            value={q}
-            onChange={(e) => setQ(e.target.value)}
-            onKeyDown={(e) =>
-              e.key === 'Enter' && load()
-            }
-          />
+    <input
+      placeholder="Pesquisar por nome ou CPF"
+      value={q}
+      onChange={(e) => setQ(e.target.value)}
+      onKeyDown={(e) =>
+        e.key === 'Enter' && load()
+      }
+    />
 
-          <button onClick={load}>Buscar</button>
-        </div>
-      </div>
+    <button onClick={load}>Buscar</button>
+  </div>
 
+  <select
+    value={status}
+    onChange={(e) => setStatus(e.target.value)}
+  >
+    <option value="">Todos os status</option>
+    <option value="ATIVO">Ativo</option>
+    <option value="INATIVO">Inativo</option>
+  </select>
+</div>
       <div className="card">
         <table>
           <thead>
@@ -289,14 +300,14 @@ function Alunos() {
                   Carregando...
                 </td>
               </tr>
-            ) : items.length === 0 ? (
+            ) : alunosFiltrados.length === 0 ? (
               <tr>
                 <td colSpan="6" className="empty">
                   Nenhum aluno encontrado!
                 </td>
               </tr>
             ) : (
-              items.map((a) => (
+              alunosFiltrados.map((a) => (
                 <tr key={a.id_aluno}>
                   <td>
                     <strong>{a.nome}</strong>
